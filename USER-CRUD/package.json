@@ -1,13 +1,15 @@
 {
-  "name": "crud-p2m-66",
+  "name": "user-crud",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
