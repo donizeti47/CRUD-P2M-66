@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login, updateUser, getUsers, getUser, deleteUser } from "../controllers/userController.js";
+import { register, login, updateUser, getUsers, getUser, deleteUser, changePassword } from "../controllers/userController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -11,5 +11,6 @@ router.put("/update", authMiddleware, updateUser);
 router.get("/", getUsers);
 router.get("/:id", getUser);
 router.delete("/:id", deleteUser);
+router.put("/changePassword", authMiddleware, changePassword);
 
 export default router;

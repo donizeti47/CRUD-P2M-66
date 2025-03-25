@@ -65,3 +65,19 @@ export async function deleteUser(req, res) {
   await user.destroy();
   res.json({ message: "User deleted" });
 }
+// função que altera a senha do usuário;
+export async function changePassword(req, res) {
+  try {
+    const { id } = req.user;
+    const user = await User.findOne({ where: { id: id } });
+    const { password, newPassword } = req.body;
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await User.update({ hashedPassword }, { where: { id: id } });
+    res.json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
